@@ -1,18 +1,51 @@
-import { Button, VerticalBox } from "std-widgets.slint";
+import { Button, VerticalBox, HorizontalBox } from "std-widgets.slint";
+
+component NumberTile {
+    in property <[int]> values;
+    in property <int> cols;
+    in property <int> rows;
+    in property <int> selected_x;
+    in property <int> selected_y;
+
+    preferred-width: 100%;
+
+    HorizontalLayout {
+        spacing: root.width * 10% / cols;
+        alignment: stretch;
+        for i in cols: VerticalLayout {
+            spacing: root.width * 10% / cols;
+            for j in rows: Rectangle {
+                height: self.width;
+                border-color: black;
+                border-width: (selected-x == i && selected-y == j) ? 5px : 0px;
+                Text {
+                    font-size: root.width / 2 / cols;
+                    text: "\{values[i * rows + j]}";
+                }
+            }
+        }
+    }
+}
 
 export component AppWindow inherits Window {
-    in-out property <int> counter: 42;
-    callback request-increase-value();
-    VerticalBox {
-        Text {
-            text: "Counter: \{root.counter}";
-        }
+    in property <[int]> values: [0];
+    in property <int> cols: 0;
+    in property <int> rows: 0;
+    in property <int> selected-x: -1;
+    in property <int> selected-y: -1;
 
-        Button {
-            text: "Increase value";
-            clicked => {
-                root.request-increase-value();
-            }
+    VerticalLayout {
+        width: 100%;
+        alignment: stretch;
+        NumberTile {
+            values: values;
+            cols: cols;
+            rows: rows;
+            selected-x: selected-x;
+        }
+        Rectangle {
+            background: blue;
+            vertical-stretch: 1;
         }
     }
 }

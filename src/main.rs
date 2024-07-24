@@ -1,15 +1,17 @@
+use std::vec;
+
 slint::include_modules!();
 
 fn main() -> Result<(), slint::PlatformError> {
     let ui = AppWindow::new()?;
 
-    ui.on_request_increase_value({
-        let ui_handle = ui.as_weak();
-        move || {
-            let ui = ui_handle.unwrap();
-            ui.set_counter(ui.get_counter() + 1);
-        }
-    });
+    let v: Vec<i32> = vec![1, 2, 3, 4, 5, 6];
+    let vv = std::rc::Rc::new(slint::VecModel::from(v));
+    ui.set_values(vv.into());
+    ui.set_cols(3);
+    ui.set_rows(2);
+    ui.set_selected_x(1);
+    ui.set_selected_y(1);
 
     ui.run()
 }

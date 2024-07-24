@@ -1,5 +1,5 @@
 [package]
-name = "{{project-name}}"
+name = "eye-game"
 version = "0.1.0"
 authors = ["{{authors}}"]
 edition = "2021"
