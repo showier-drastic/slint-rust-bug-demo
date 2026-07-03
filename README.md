@@ -29,6 +29,26 @@ Rust code, how to react to callbacks, get and set properties, and use basic widg
 
 We recommend using an IDE for development, along with our [LSP-based IDE integration for `.slint` files](https://github.com/slint-ui/slint/blob/master/tools/lsp/README.md). You can also load this project directly in [Visual Studio Code](https://code.visualstudio.com) and install our [Slint extension](https://marketplace.visualstudio.com/items?itemName=Slint.slint).
 
+## Write file backend
+
+- **`write-file-backend`** — needs no display: it
+  renders a single frame into an off-screen buffer, writes it to disk as a BMP,
+  and exits. Handy for screenshots and headless smoke tests. Configure it with:
+
+  | Variable | Default | Meaning |
+  | --- | --- | --- |
+  | `SLINT_WRITE_FILE_PATH` | `screenshot.bmp` | Output BMP path |
+  | `SLINT_WRITE_FILE_WIDTH` | `800` | Output width in physical pixels |
+  | `SLINT_WRITE_FILE_HEIGHT` | `600` | Output height in physical pixels |
+  | `SLINT_WRITE_FILE_SCALE` | `1.0` | UI scale factor |
+  | `SLINT_WRITE_FILE_DELAY_MS` | `100` | Settle delay before capturing |
+
+  Example:
+  ```
+  SLINT_WRITE_FILE_WIDTH=640 SLINT_WRITE_FILE_HEIGHT=480 \
+    SLINT_WRITE_FILE_PATH=shot.bmp cargo run
+  ```
+
 ## Next Steps
 
 We hope that this template helps you get started, and that you enjoy exploring making user interfaces with Slint. To learn more

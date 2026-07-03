@@ -6,6 +6,8 @@ use std::error::Error;
 slint::include_modules!();
 
 fn main() -> Result<(), Box<dyn Error>> {
+    slint::platform::set_platform(Box::new(write_file_backend::Backend::new()))?;
+
     let ui = AppWindow::new()?;
 
     let ui_handle = ui.as_weak();

@@ -1,6 +1,8 @@
+import "./Inter-VariableFont_opsz,wght.ttf";
 import { Button, VerticalBox } from "std-widgets.slint";
 
 export component AppWindow inherits Window {
+    default-font-family: "Inter";
     in-out property <int> counter: 42;
     callback request-increase-value();
     VerticalBox {

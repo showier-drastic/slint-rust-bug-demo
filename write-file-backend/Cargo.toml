@@ -1,0 +1,13 @@
+# Minimal Slint platform backend that renders one frame into an off-screen
+# buffer and writes it to disk as a BMP, then exits. Useful for screenshots /
+# headless smoke tests without any display server or KMS/DRM device.
+
+[package]
+name = "write-file-backend"
+version = "0.1.0"
+edition = "2024"
+license = "MIT"
+
+[dependencies]
+i-slint-core = { version = "=1.17.0", default-features = false, features = ["std"] }
+i-slint-renderer-software = "=1.17.0"
